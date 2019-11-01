@@ -32,11 +32,11 @@ powershell -File "C:\files\IPs_intranet.ps1"
 
 mkdir c:\files
 ::Acesso a rede onde está os arquivos para serem instalados 
-pushd \\192.168.3.3\dados\Programas
+pushd \\192.168.3.3\dados\
 echo Copiando arquivos
 echo.
 echo.
-xcopy *.* c:\files\
+xcopy Programas C:\files\ /E
 echo Copia Concluida
 cd c:\files
 
@@ -97,14 +97,16 @@ echo.
 ::Instalação das fontes padrões DAMAPEL
 echo.
 echo Instalando Fontes
-powershell -File "C:\files\fonts\install_fonts.ps1"
+powershell -File "C:\files\install_fonts.ps1"
 echo.
 echo Fontes instaladas com sucesso
 
 :: Deleta a pasta files e atalhos do foxit e ccleaner
 xcopy C:\files\vnc-key.txt %userprofile%\Desktop
+C:
 set d=C:\Users\Public\Desktop
-rd /s /q c:\files && cd %d%
+rd /s /q c:\files
+cd %d%
 del "Foxit Reader.lnk", CCleaner.lnk
 
 echo Instalacao Concluida
