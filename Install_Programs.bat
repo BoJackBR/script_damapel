@@ -103,6 +103,7 @@ echo Fontes instaladas com sucesso
 
 :: Deleta a pasta files e atalhos do foxit e ccleaner
 xcopy C:\files\vnc-key.txt %userprofile%\Desktop
+xcopy C:\files\site_url\*.* %userprofile%\Desktop /Y
 C:
 set d=C:\Users\Public\Desktop
 rd /s /q c:\files
