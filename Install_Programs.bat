@@ -27,19 +27,18 @@ exit /b
 ::Libera a politica de permissão para o powershell ser executado no sistema
 powershell -Command "Set-ExecutionPolicy Unrestricted"
 
-::Adiciona os IPs da rede e localhost para não ter problemas nas instalações dos programas
-powershell -File "C:\files\IPs_intranet.ps1"
-
-mkdir c:\files
-mkdir c:\damapel
+mkdir C:\files
+mkdir C:\damapel
 ::Acesso a rede onde está os arquivos para serem instalados 
-pushd \\192.168.3.3\dados\
+pushd \\192.168.3.3\dados\Programas\
 echo Copiando arquivos
 echo.
 echo.
-xcopy Programas C:\files\ /E
+xcopy *.* C:\files\ /E
 echo Copia Concluida
-cd c:\files
+::Adiciona os IPs da rede e localhost para não ter problemas nas instalações dos programas
+powershell -File "C:\files\IPs_intranet.ps1"
+cd C:\files\
 
 ::///////////////////////////////////////////////////////
 ::Instalação dos programas principais usados na DAMAPEL//
@@ -105,17 +104,18 @@ echo Fontes instaladas com sucesso
 ::Instalação do papel de parede padrão
 echo.
 echo Configurando papel de parede
+xcopy C:\files\wallpaper.jpg C:\damapel\
 powershell -File "C:\files\wallpaper.ps1
 
 
 xcopy C:\files\vnc-key.txt %userprofile%\Desktop
-xcopy C:\files\sites\*.* %userprofile%\Desktop /Y
+xcopy C:\files\sites\*.* C:\Users\Public\Desktop /Y
 mkdir C:\damapel\icons
 xcopy C:\files\icons\*.* C:\damapel\icons
 
 C:
 set d=C:\Users\Public\Desktop
-rd /s /q c:\files
+rd /s /q C:\files
 cd %d%
 del "Foxit Reader.lnk", CCleaner.lnk
 
