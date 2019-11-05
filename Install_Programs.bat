@@ -31,6 +31,7 @@ powershell -Command "Set-ExecutionPolicy Unrestricted"
 powershell -File "C:\files\IPs_intranet.ps1"
 
 mkdir c:\files
+mkdir c:\damapel
 ::Acesso a rede onde está os arquivos para serem instalados 
 pushd \\192.168.3.3\dados\
 echo Copiando arquivos
@@ -101,9 +102,17 @@ powershell -File "C:\files\install_fonts.ps1"
 echo.
 echo Fontes instaladas com sucesso
 
-:: Deleta a pasta files e atalhos do foxit e ccleaner
+::Instalação do papel de parede padrão
+echo.
+echo Configurando papel de parede
+powershell -File "C:\files\wallpaper.ps1
+
+
 xcopy C:\files\vnc-key.txt %userprofile%\Desktop
-xcopy C:\files\site_url\*.* %userprofile%\Desktop /Y
+xcopy C:\files\sites\*.* %userprofile%\Desktop /Y
+mkdir C:\damapel\icons
+xcopy C:\files\icons\*.* C:\damapel\icons
+
 C:
 set d=C:\Users\Public\Desktop
 rd /s /q c:\files
